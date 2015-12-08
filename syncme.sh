@@ -3,6 +3,8 @@
 # then move the data away from your vps gdrive folder
 j=0
 deldir=/del #your deletion folder
+username=
+password=
 
 cd /gdrive
 for x in *
@@ -13,7 +15,7 @@ for x in *
 j=0
 for y in "${file[@]}"
   do
-    TID[$j]=$(cat ~/butterfly.txt | grep "$y" | awk '{print $1}')
+    TID[$j]=$(transmission-remote -n ${username}:${password} --list | grep "$y" | awk '{print $1}')
     j=$((j+1))
   done
 
